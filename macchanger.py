@@ -59,6 +59,7 @@ def change_mac(interface, new_mac):
         subprocess.run(["sudo", "ifconfig", interface, "hw", "ether", new_mac], check=True, stderr=subprocess.DEVNULL)
         subprocess.run(["sudo", "ifconfig", interface, "up"], check=True, stderr=subprocess.DEVNULL)
         color(f"\n[*] Changed MAC address of {interface} to {new_mac}", B_GREEN)
+        
     except subprocess.CalledProcessError:
         RETRY -= 1
         subprocess.run(["sudo", "ifconfig", interface, "up"], check=True, stderr=subprocess.DEVNULL)
